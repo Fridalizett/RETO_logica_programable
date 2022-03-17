@@ -18,7 +18,7 @@ class Player {
     y = _y;
     xSpeed = 0;
     ySpeed = 0;
-    accel = 0.2;
+    accel = 0.5;
     deccel = 0.5;
     maxXspd = 2;
     maxYspd = 12;

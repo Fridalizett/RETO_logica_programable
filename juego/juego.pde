@@ -93,8 +93,8 @@ void serVal() {
 }
 void keyReleased() {
   switch(key) {
-    case RIGHT: right = false; break;
-    case LEFT: left = false; break;
-    case UP: up = false; break;
+    case 'd': right = false; break;
+    case 'a': left = false; break;
+    case 'w': up = false; break;
   }
 }
