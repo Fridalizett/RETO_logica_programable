@@ -1,0 +1,50 @@
+;ACT RETO
+;DECLARACION DE REGISTROS
+
+      NAMEREG     s0,         RegistroEntradaXLSB
+      NAMEREG     s1,         RegistroEntradaXMSB
+      NAMEREG     s2,         RegistroEntradaYLSB
+      NAMEREG     s3,         RegistroEntradaYMSB
+      NAMEREG     s4,         RegistroEntradaZLSB
+      NAMEREG     s5,         RegistroEntradaZMSB
+
+      NAMEREG     s6,         DatoSerial
+	NAMEREG     s7,         EstadoTX
+	NAMEREG     s8,         EstadoRX
+	NAMEREG     s9,         LeidoRX
+
+;DECLARACION DE PUERTOS
+      CONSTANT    PuertoEntradaXLSB,         41
+      CONSTANT    PuertoEntradaXMSB,         42
+      CONSTANT    PuertoEntradaYLSB,         43
+      CONSTANT    PuertoEntradaYMSB,         44
+      CONSTANT    PuertoEntradaZLSB,         45
+      CONSTANT    PuertoEntradaZMSB,         46
+
+      CONSTANT    PuertoLeeListoTX,          11
+      CONSTANT    PuertoEscribeDatoTX,       12
+      CONSTANT    PuertoLeeDatoRX,           13
+      CONSTANT    PuertoDatoListoRX,         14
+      CONSTANT    PuertoDatoRXLeido,         15
+      CONSTANT    PuertoSalida,              80
+
+  ;inicio de programa
+
+
+leedatos:
+
+      INPUT  RegistroEntradaXMSB,   PuertoEntradaXMSB
+      LOAD   DatoSerial,            RegistroEntradaXMSB
+      CALL   tx_uart
+      INPUT  RegistroEntradaXLSB,   PuertoEntradaXLSB
+      LOAD   DatoSerial,            RegistroEntradaXLSB
+      CALL   tx_uart
+
+;TRANSMISION UART
+tx_uart:
+    INPUT         EstadoTX,         PuertoLeeListoTX
+    COMPARE		EstadoTX,         02
+    JUMP		Z, tx_uart
+    OUTPUT		DatoSerial,       PuertoEscribeDatoTX
+    RETURN
+
