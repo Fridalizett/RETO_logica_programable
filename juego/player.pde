@@ -102,7 +102,7 @@ class Player {
     for ( ; xRep > 0; xRep-- ) {
       if ( place_free(x+signX,y-charYShift) && place_free(x+signX,y) ) {
         x += signX;
-        if (x==900){x=-20;}
+        if (x==900){x=0;}
         if (x==-20){x=900;}
     }
     else{
